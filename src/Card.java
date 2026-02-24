@@ -77,6 +77,31 @@ class Card {
         System.out.println("Pin: " + Pin);
         System.out.println("Status: " + (IsActive ? "Active" : "Inactive"));
     }
+
+//=========================SECURITY METHOD=====================
+    public void UpDatePin(int OldPin, int NewPin){
+        this.Pin = (OldPin == this.Pin) ? NewPin : this.Pin;
+    }
+
+//=======================ACTIVATE CARD METHOD=================
+    public void ActivateCard(){
+        //sets card status to true and display conformation message
+        this.IsActive = true;
+        System.out.println("******** Card is now activated *******");
+    }
+
+    @Override
+    public String toString() {
+        // mask PIN with asterisks
+        String maskedPin = "*".repeat(String.valueOf(Pin).length());
+
+        return "Card Summary:\n" +
+                "Card Number: " + CardNumber + "\n" +
+                "Balance: $" + Balance + "\n" +
+                "PIN: " + maskedPin + "\n" +
+                "Status: " + (IsActive ? "Active" : "Inactive");
+    }
+
 }
 
 
