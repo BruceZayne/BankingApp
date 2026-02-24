@@ -1,7 +1,7 @@
 
 
 //BASE CARD CLASS
-class Card {
+public class Card {
 //    PRIVATE VARIABLES
     private String CardNumber;
     private double Balance;
@@ -80,7 +80,15 @@ class Card {
 
 //=========================SECURITY METHOD=====================
     public void UpDatePin(int OldPin, int NewPin){
-        this.Pin = (OldPin == this.Pin) ? NewPin : this.Pin;
+        if(OldPin == this.Pin)
+        {
+          this.Pin = NewPin;
+          System.out.println("+**********Pin Updated Successfully****************");
+        }
+        else
+        {
+            System.out.println("*******Incorrect Old PIN. Update Failed.*********");
+        }
     }
 
 //=======================ACTIVATE CARD METHOD=================
