@@ -17,9 +17,9 @@ public class Client {
                   String cardNumber, double balance, int pin, boolean isActive) */ //REMOVE FOR NOW
     public Client(int idNumber, String firstName, String lastName, int age, Card card){
 
-       /* if (age < 18) {
+        if (age < 18) {
             throw new IllegalArgumentException("Client must be 18 or older.");
-        }*/ //REMOVE FOR NOW
+        }
 
         this.idNumber = idNumber;
         this.firstName = firstName;

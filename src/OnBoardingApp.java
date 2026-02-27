@@ -3,13 +3,15 @@ import java.util.Scanner;
 
 public class OnBoardingApp {
     public static void main(String[] args){
-
+        Scanner sc = new Scanner(System.in);
+        int attempts = 0;
+        boolean authenticated = false;
 
         //Collecting...
-        try (Scanner sc = new Scanner(System.in)) {
+        try {
             System.out.println("Enter your age: ");
             int age = sc.nextInt();
-            if (age < 18){
+           if (age < 18){
                 System.out.println("Client does not meet the age requirements");
                 System.exit(0);
             }
@@ -52,7 +54,7 @@ public class OnBoardingApp {
                     case 1:
                         System.out.println("*****  Client Profile  *****");
                        System.out.println(client);
-                       if (client.GetCard().GetStatus() == false ){
+                       if (!client.GetCard().GetStatus()){ // Ths checks if card is not active
 
 
                            System.out.println("Would you like to activate your account? (y/n)");
@@ -64,20 +66,48 @@ public class OnBoardingApp {
                         break;
                     case 2:
                         System.out.println("*****  Balance *****");
+                        double balanceCheck = client.GetCard().GetBalance();
+                        System.out.println("Your balance is $" + balanceCheck);
                         break;
                     case 3:
                         System.out.println("*****  Deposit *****");
+                        System.out.println("Enter the amount you wish to deposit: ");
+                        double deposit = sc.nextInt();
+                        deposit =  deposit + client.GetCard().GetBalance();
+                        client.GetCard().SetBalance(deposit);
+                        System.out.println("Deposit Successful.");
+
+
                         break;
                     case 4:
                         System.out.println("*****  Withdraw *****");
+                        System.out.println("Enter the amount you wish to withdraw: ");
+                        double withdraw = sc.nextInt();
+                        withdraw =  client.GetCard().GetBalance() - withdraw;
+                        client.GetCard().SetBalance(withdraw);
+                        System.out.println("Withdraw Successful.");
                         break;
                     case 5:
-                        System.out.println("*****  Update PIN *****");
-                        System.out.println("Enter your old PIN.");
-                        int OldPin = sc.nextInt();
+                        while (attempts < 3 && !authenticated) {
+                            System.out.println("*****  Update PIN *****");
+                            System.out.println("Enter your old PIN.");
+                            int OldPin = sc.nextInt();
+                            if (OldPin == Pin) {
+                                authenticated = true;
+                            } else {
+                                attempts++;
+                                if (attempts >= 3) {
+                                    System.out.println("Error: Incorrect Code Entered Too Many Times. Security Alert Triggered...");
+                                    System.out.close();
+                                    System.exit(0);
+
+                                }
+                            }
+                        }
+
                         System.out.println("Enter your new PIN.");
                         int NewPin = sc.nextInt();
-                        card.UpDatePin(OldPin, NewPin);
+                        card.UpDatePin(Pin, NewPin);
                         break;
                     case 6:
 
@@ -88,7 +118,7 @@ public class OnBoardingApp {
                         System.out.println("Invalid option.");
                 }
             }
-            sc.close();
+
         } catch (InputMismatchException e) {
             System.out.println("Invalid format. Please try again.");
         }

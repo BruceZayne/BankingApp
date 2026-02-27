@@ -38,12 +38,16 @@ public class Card {
 
 //=========================BALANCE==============================
 //    SETTER
-    public void SetBalance(double balance){
+    public void SetBalance(double balance) {
+
         this.Balance = balance;
+
     }
 
-//    GETTER
+//    GETTER - This views the current balance
     public double GetBalance(){
+
+
         return this.Balance;
     }
 
@@ -102,9 +106,10 @@ public class Card {
     public String toString() {
         // mask PIN with asterisks
         String maskedPin = "*".repeat(String.valueOf(Pin).length());
+        String maskedCard = CardNumber.substring(CardNumber.length() - 4);
 
-        return "Card Summary:\n" +
-                "Card Number: " + CardNumber + "\n" +
+        return "**** Card Summary ****\n" +
+                "Card Number: XXXX-XXXX-XXXX-" + maskedCard + "\n" +
                 "Balance: $" + Balance + "\n" +
                 "PIN: " + maskedPin + "\n" +
                 "Status: " + (IsActive ? "Active" : "Inactive");
