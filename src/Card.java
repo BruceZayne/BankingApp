@@ -9,20 +9,20 @@ public class Card {
     private boolean IsActive;
 
 //=============DEFAULT CONSTRUCTOR===============================
-    public Card()
+   /* public Card()
     {
         this.CardNumber = "0";
         this.Balance = 0.0;
         this.Pin = 0;
         this.IsActive = false;
-    }
+    }*/ //REMOVE FOR NOW
 
 //============PARAMETERIZED CONSTRUCTOR=========================
-    public Card(String CNum, double bal, int pin, boolean status){
+    public Card(String CNum, double bal, int pin){
         this.CardNumber =CNum;
         this.Balance = bal;
         this.Pin = pin;
-        this.IsActive = status;
+        this.IsActive = false;
 
     }
 // =========================CARD===============================

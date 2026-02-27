@@ -6,26 +6,28 @@ public class Client {
     private  int age;
     private Card card;
 
-    public Client(){
+  /*  public Client(){
         this.idNumber = 0;
         this.firstName = " ";
         this.lastName = " ";
         this.age = 0;
 
-    }
-    public Client(int idNumber, String firstName, String lastName, int age,
-                  String cardNumber, double balance, int pin, boolean isActive) {
+    }*/ //REMOVE FOR NOW
+    /*public Client(int idNumber, String firstName, String lastName, int age,
+                  String cardNumber, double balance, int pin, boolean isActive) */ //REMOVE FOR NOW
+    public Client(int idNumber, String firstName, String lastName, int age, Card card){
 
-        if (age < 18) {
+       /* if (age < 18) {
             throw new IllegalArgumentException("Client must be 18 or older.");
-        }
+        }*/ //REMOVE FOR NOW
 
         this.idNumber = idNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
 
-        this.card = new Card(cardNumber, balance, pin, isActive);
+        //this.card = new Card(cardNumber, balance, pin, isActive);
+        this.card = card;
     }
 
 //======================ID NUMBER=================================

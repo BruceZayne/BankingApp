@@ -1,6 +1,5 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class OnBoardingApp {
     public static void main(String[] args){
@@ -8,21 +7,30 @@ public class OnBoardingApp {
 
         //Collecting...
         try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Enter your age: ");
+            int age = sc.nextInt();
+            if (age < 18){
+                System.out.println("Client does not meet the age requirements");
+                System.exit(0);
+            }
             System.out.println("Enter your ID Number: ");
             int idNumber = sc.nextInt();
-            System.out.println("Enter your Card Number: ");
-            int cardNumber = sc.nextInt();
             System.out.println("Enter your First Name: ");
             String firstName = sc.next();
             System.out.println("Enter your Last Name: ");
             String lastName = sc.next();
-            System.out.println("Enter your age: ");
-            int age = sc.nextInt();
+            System.out.println("Enter your Card Number: ");
+            String cardNumber = sc.next();
+            System.out.println("Enter your Initial Deposit Amount: ");
+            double bal = sc.nextInt();
+
+
             System.out.println("Enter your PIN: ");
             int Pin = sc.nextInt();
 
-            Client client = new Client();
-            Card card = new Card();
+            Card card = new Card(cardNumber, bal,Pin);
+            Client client = new Client(idNumber,firstName, lastName, age, card);
+
             //Verify PIN
 
             //Displaying Profile etc...
@@ -43,7 +51,16 @@ public class OnBoardingApp {
                 switch (choice) {
                     case 1:
                         System.out.println("*****  Client Profile  *****");
-                        //       * client.Display();
+                       System.out.println(client);
+                       if (client.GetCard().GetStatus() == false ){
+
+
+                           System.out.println("Would you like to activate your account? (y/n)");
+                           char cardActivated = sc.next().charAt(0);
+                           if (cardActivated == 'y') {
+                               client.GetCard().ActivateCard();
+                           }
+                       }
                         break;
                     case 2:
                         System.out.println("*****  Balance *****");
@@ -65,11 +82,13 @@ public class OnBoardingApp {
                     case 6:
 
                         System.out.println("Thank You! Goodbye!");
+                        System.exit(0);
                         break;
                     default:
                         System.out.println("Invalid option.");
                 }
             }
+            sc.close();
         } catch (InputMismatchException e) {
             System.out.println("Invalid format. Please try again.");
         }
