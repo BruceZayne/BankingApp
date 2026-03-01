@@ -78,7 +78,7 @@ public class OnBoardingApp {
                     case 1:
                         System.out.println("*****  Client Profile  *****");
                        System.out.println(client);
-                       if (!client.GetCard().GetStatus()){ // Ths checks if card is not active
+                       if (!client.GetCard().GetStatus()){ // This checks if card is not active
 
 
                            System.out.println("Would you like to activate your account? (y/n)");
@@ -127,9 +127,10 @@ public class OnBoardingApp {
                             int OldPin = sc.nextInt();
                             sc.nextLine(); // clear leftover newline
 
-                            if (OldPin == Pin) {
+                            if (OldPin == client.GetCard().GetPin()) {
                                 authenticated = true;
                             } else {
+                                System.out.println("Incorrect PIN Entered. You have " + (2 - attempts) + " attempts remaining.");
                                 attempts++;
                                 if (attempts >= 3) {
                                     System.out.println("Error: Incorrect Code Entered Too Many Times. Security Alert Triggered...");
@@ -143,7 +144,7 @@ public class OnBoardingApp {
                             int NewPin = sc.nextInt();
                             sc.nextLine(); // clear leftover newline
 
-                            client.GetCard().UpDatePin(Pin, NewPin);
+                            client.GetCard().UpDatePin(client.GetCard().GetPin(), NewPin);
                         }
                         break;
                     case 6:

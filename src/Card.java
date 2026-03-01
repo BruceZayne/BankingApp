@@ -84,7 +84,7 @@ public class Card {
 
 //=========================SECURITY METHOD=====================
     public void UpDatePin(int OldPin, int NewPin){
-        if(OldPin == this.Pin)
+        if(this.Pin == OldPin)
         {
           this.Pin = NewPin;
           System.out.println("+**********Pin Updated Successfully****************");
